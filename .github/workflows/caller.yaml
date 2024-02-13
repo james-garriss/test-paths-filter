@@ -31,7 +31,7 @@ jobs:
         id: sh-changes
         with:
           filters: |
-            yaml-files:
+            sh-files:
               - "**.sh"
   call-yaml:
     name: Call YAML WF
