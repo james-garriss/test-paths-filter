@@ -1,4 +1,4 @@
-name: The workflow that is called
+name: Called
 on:
   workflow_call:
 jobs:
