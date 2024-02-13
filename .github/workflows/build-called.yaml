@@ -1,0 +1,15 @@
+name: Build Called
+on:
+  workflow_call:
+jobs:
+  build-list:
+    name: Build List
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: List file
+        run: ls -al
