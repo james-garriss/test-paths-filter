@@ -2,11 +2,11 @@ name: Caller
 on:
   push:
 jobs:
-  call-yaml:
-    name: Call YAML
+  test-yaml:
+    name: Test YAML
     runs-on: ubuntu-latest
     outputs:
-      output: ${{ steps.yaml-changes.outputs.yaml-files }}
+      yaml-changes: ${{ steps.yaml-changes.outputs.yaml-files }}
     steps:
       - name: Check for YAML
         uses: dorny/paths-filter@v3
@@ -16,6 +16,9 @@ jobs:
             yaml-files:
               - "**.yml"
               - "**.yaml"
-      - name: Call YAML Workflow
-        if: steps.yaml-changes.outputs.yaml-files == 'true'
-        uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
+  call-yaml:
+    name: Call YAML Workflow
+    needs: 
+      - test-yaml
+    if: ${{ needs.test-yaml.outputs.yaml-changes }} == 'true'
+    uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
