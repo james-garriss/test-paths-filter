@@ -18,9 +18,30 @@ jobs:
             yaml-files:
               - "**.yml"
               - "**.yaml"
+  test-sh:
+    name: Test SH
+    runs-on: ubuntu-latest
+    outputs:
+      sh-changes: ${{ steps.sh-changes.outputs.sh-files }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Check for Sh
+        uses: dorny/paths-filter@v3
+        id: sh-changes
+        with:
+          filters: |
+            yaml-files:
+              - "**.sh"
   call-yaml:
-    name: Call YAML Workflow
+    name: Call YAML WF
     needs: 
       - test-yaml
     if: needs.test-yaml.outputs.yaml-changes == 'true'
-    uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
+    uses: james-garriss/test-paths-filter/.github/workflows/yaml-called.yaml@main
+  call-sh:
+    name: Call Sh WF
+    needs: 
+      - test-sh
+    if: needs.test-sh.outputs.sh-changes == 'true'
+    uses: james-garriss/test-paths-filter/.github/workflows/sh-called.yaml@main
