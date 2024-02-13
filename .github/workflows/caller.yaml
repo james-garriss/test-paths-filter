@@ -45,3 +45,9 @@ jobs:
       - test-sh
     if: needs.test-sh.outputs.sh-changes == 'true'
     uses: james-garriss/test-paths-filter/.github/workflows/sh-called.yaml@main
+  call-build:
+    name: Call Build Wf
+    needs:
+      - call-yaml
+      - call-sh
+    uses: james-garriss/test-paths-filter/.github/workflows/build-called.yaml@main
