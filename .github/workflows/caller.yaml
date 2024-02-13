@@ -4,4 +4,18 @@ on:
 jobs:
   call-yaml:
     name: Call YAML
-    uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
+    runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.yaml-changes.outputs.yaml-files }}
+    steps:
+      - name: Check for YAML
+        uses: dorny/paths-filter@v3
+        id: yaml-changes
+        with:
+          filters: |
+            yaml-files:
+              - "**.yml"
+              - "**.yaml"
+      - name: Call YAML Workflow
+        if: steps.yaml-changes.outputs.yaml-files == 'true'
+        uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
