@@ -1,9 +1,9 @@
-name: Called
+name: YAML Called
 on:
   workflow_call:
 jobs:
-  yaml-test:
-    name: YAML Test
+  yaml-list:
+    name: YAML List
     runs-on: ubuntu-latest
     defaults:
       run:
