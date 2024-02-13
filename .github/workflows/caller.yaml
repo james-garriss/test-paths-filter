@@ -8,6 +8,8 @@ jobs:
     outputs:
       yaml-changes: ${{ steps.yaml-changes.outputs.yaml-files }}
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
       - name: Check for YAML
         uses: dorny/paths-filter@v3
         id: yaml-changes
