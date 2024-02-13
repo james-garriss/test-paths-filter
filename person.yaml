@@ -1,4 +1,5 @@
 person:
   first: John
   last: Doe
-  age: 50  
+  age: 50
+  state: va
