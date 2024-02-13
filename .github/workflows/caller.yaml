@@ -1,0 +1,7 @@
+name: Caller
+on:
+  push:
+jobs:
+  call-yaml:
+    name: Call YAML
+    uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
