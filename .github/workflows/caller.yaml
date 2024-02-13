@@ -22,5 +22,5 @@ jobs:
     name: Call YAML Workflow
     needs: 
       - test-yaml
-    if: ${{ needs.test-yaml.outputs.yaml-changes }} == 'true'
+    if: needs.test-yaml.outputs.yaml-changes == 'true'
     uses: james-garriss/test-paths-filter/.github/workflows/called.yaml@main
