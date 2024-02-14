@@ -31,7 +31,7 @@ jobs:
     name: Call Sh WF
     needs: 
       - test-files
-    if: needs.test-files.outputs.yaml-changes == 'true'
+    if: needs.test-files.outputs.sh-changes == 'true'
     uses: james-garriss/test-paths-filter/.github/workflows/sh-called.yaml@main
   call-build:
     name: Call Build Wf
