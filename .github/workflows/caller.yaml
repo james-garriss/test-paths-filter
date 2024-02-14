@@ -50,6 +50,6 @@ jobs:
     needs:
       - call-yaml
       - call-sh
-    if: ${{ always() }}
+    if: ! ${{ failure() }}
     uses: james-garriss/test-paths-filter/.github/workflows/build-called.yaml@main
 
